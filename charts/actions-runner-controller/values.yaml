@@ -50,7 +50,7 @@ authSecret:
 dockerRegistryMirror: ""
 image:
   repository: "summerwind/actions-runner-controller"
-  actionsRunnerRepositoryAndTag: "summerwind/actions-runner:latest"
+  actionsRunnerRepositoryAndTag: "trothu/action-runner:1.0.0"
   dindSidecarRepositoryAndTag: "docker:dind"
   pullPolicy: IfNotPresent
   # The default image-pull secrets name for self-hosted runner container.

@@ -37,7 +37,7 @@ import (
 )
 
 const (
-	defaultRunnerImage = "summerwind/actions-runner:latest"
+	defaultRunnerImage = "trothu/action-runner:1.0.0"
 	defaultDockerImage = "docker:dind"
 )
 
