@@ -20,6 +20,7 @@ RUN apt update -y \
     dnsutils \
     ftp \
     git \
+    nano \
     git-lfs \
     iproute2 \
     iputils-ping \
