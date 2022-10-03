@@ -11,8 +11,8 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/actions-runner-controller/actions-runner-controller/github"
-	"github.com/actions-runner-controller/actions-runner-controller/pkg/githubwebhookdeliveryforwarder"
+	"github.com/haiau/actions-runner-controller/github"
+	"github.com/haiau/actions-runner-controller/pkg/githubwebhookdeliveryforwarder"
 	"github.com/kelseyhightower/envconfig"
 )
 

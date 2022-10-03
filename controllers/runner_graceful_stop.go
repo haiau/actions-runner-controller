@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/actions-runner-controller/actions-runner-controller/github"
 	"github.com/go-logr/logr"
 	gogithub "github.com/google/go-github/v47/github"
+	"github.com/haiau/actions-runner-controller/github"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	ctrl "sigs.k8s.io/controller-runtime"
@@ -128,7 +128,7 @@ func ensureRunnerUnregistration(ctx context.Context, retryDelay time.Duration, l
 		}
 
 		// Prevent runner pod from stucking in Terminating.
-		// See https://github.com/actions-runner-controller/actions-runner-controller/issues/1369
+		// See https://github.com/haiau/actions-runner-controller/issues/1369
 		log.Info("Deleting runner pod anyway because it has stopped prematurely. This may leave a dangling runner resource in GitHub Actions",
 			"lastState.exitCode", lts.ExitCode,
 			"lastState.message", lts.Message,
@@ -213,7 +213,7 @@ func ensureRunnerUnregistration(ctx context.Context, retryDelay time.Duration, l
 			log.V(2).Info("Retrying runner unregistration because the static runner is still busy")
 			// Otherwise we may end up spamming 422 errors,
 			// each call consuming GitHub API rate limit
-			// https://github.com/actions-runner-controller/actions-runner-controller/pull/1167#issuecomment-1064213271
+			// https://github.com/haiau/actions-runner-controller/pull/1167#issuecomment-1064213271
 			return &ctrl.Result{RequeueAfter: retryDelay}, nil
 		}
 
@@ -351,21 +351,22 @@ func setRunnerEnv(pod *corev1.Pod, key, value string) {
 // Case 1. (true, nil) when it has successfully unregistered the runner.
 // Case 2. (false, nil) when (2-1.) the runner has been already unregistered OR (2-2.) the runner will never be created OR (2-3.) the runner is not created yet and it is about to be registered(hence we couldn't see it's existence from GitHub Actions API yet)
 // Case 3. (false, err) when it postponed unregistration due to the runner being busy, or it tried to unregister the runner but failed due to
-//   an error returned by GitHub API.
+//
+//	an error returned by GitHub API.
 //
 // When the returned values is "Case 2. (false, nil)", the caller must handle the three possible sub-cases appropriately.
 // In other words, all those three sub-cases cannot be distinguished by this function alone.
 //
-// - Case "2-1." can happen when e.g. ARC has successfully unregistered in a previous reconcilation loop or it was an ephemeral runner that finished it's job run(an ephemeral runner is designed to stop after a job run).
-//   You'd need to maintain the runner state(i.e. if it's already unregistered or not) somewhere,
-//   so that you can either not call this function at all if the runner state says it's already unregistered, or determine that it's case "2-1." when you got (false, nil).
+//   - Case "2-1." can happen when e.g. ARC has successfully unregistered in a previous reconcilation loop or it was an ephemeral runner that finished it's job run(an ephemeral runner is designed to stop after a job run).
+//     You'd need to maintain the runner state(i.e. if it's already unregistered or not) somewhere,
+//     so that you can either not call this function at all if the runner state says it's already unregistered, or determine that it's case "2-1." when you got (false, nil).
 //
-// - Case "2-2." can happen when e.g. the runner registration token was somehow broken so that `config.sh` within the runner container was never meant to succeed.
-//   Waiting and retrying forever on this case is not a solution, because `config.sh` won't succeed with a wrong token hence the runner gets stuck in this state forever.
-//   There isn't a perfect solution to this, but a practical workaround would be implement a "grace period" in the caller side.
+//   - Case "2-2." can happen when e.g. the runner registration token was somehow broken so that `config.sh` within the runner container was never meant to succeed.
+//     Waiting and retrying forever on this case is not a solution, because `config.sh` won't succeed with a wrong token hence the runner gets stuck in this state forever.
+//     There isn't a perfect solution to this, but a practical workaround would be implement a "grace period" in the caller side.
 //
-// - Case "2-3." can happen when e.g. ARC recreated an ephemral runner pod in a previous reconcilation loop and then it was requested to delete the runner before the runner comes up.
-//   If handled inappropriately, this can cause a race condition betweeen a deletion of the runner pod and GitHub scheduling a workflow job onto the runner.
+//   - Case "2-3." can happen when e.g. ARC recreated an ephemral runner pod in a previous reconcilation loop and then it was requested to delete the runner before the runner comes up.
+//     If handled inappropriately, this can cause a race condition betweeen a deletion of the runner pod and GitHub scheduling a workflow job onto the runner.
 //
 // Once successfully detected case "2-1." or "2-2.", you can safely delete the runner pod because you know that the runner won't come back
 // as long as you recreate the runner pod.
@@ -394,7 +395,7 @@ func unregisterRunner(ctx context.Context, client *github.Client, enterprise, or
 	// # NOTES
 	//
 	// - It can be "status=offline" at the same time but that's another story.
-	// - After https://github.com/actions-runner-controller/actions-runner-controller/pull/1127, ListRunners responses that are used to
+	// - After https://github.com/haiau/actions-runner-controller/pull/1127, ListRunners responses that are used to
 	//   determine if the runner is busy can be more outdated than before, as those responeses are now cached for 60 seconds.
 	// - Note that 60 seconds is controlled by the Cache-Control response header provided by GitHub so we don't have a strict control on it but we assume it won't
 	//   change from 60 seconds.

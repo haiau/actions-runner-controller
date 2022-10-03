@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/actions-runner-controller/actions-runner-controller/github"
 	"github.com/go-logr/logr"
+	"github.com/haiau/actions-runner-controller/github"
 )
 
 type Simulator struct {

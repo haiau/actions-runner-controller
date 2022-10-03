@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/actions-runner-controller/actions-runner-controller/github"
 	gogithub "github.com/google/go-github/v47/github"
+	"github.com/haiau/actions-runner-controller/github"
 )
 
 type MultiForwarder struct {

@@ -10,13 +10,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/actions-runner-controller/actions-runner-controller/build"
-	"github.com/actions-runner-controller/actions-runner-controller/github/metrics"
-	"github.com/actions-runner-controller/actions-runner-controller/logging"
 	"github.com/bradleyfalzon/ghinstallation/v2"
 	"github.com/go-logr/logr"
 	"github.com/google/go-github/v47/github"
 	"github.com/gregjones/httpcache"
+	"github.com/haiau/actions-runner-controller/build"
+	"github.com/haiau/actions-runner-controller/github/metrics"
+	"github.com/haiau/actions-runner-controller/logging"
 	"golang.org/x/oauth2"
 )
 
@@ -166,7 +166,7 @@ func (c *Client) GetRegistrationToken(ctx context.Context, enterprise, org, repo
 	// https://docs.github.com/en/rest/overview/resources-in-the-rest-api#conditional-requests
 	//
 	// This is currently set to 30 minutes as the result of the discussion took place at the following issue:
-	// https://github.com/actions-runner-controller/actions-runner-controller/issues/1295
+	// https://github.com/haiau/actions-runner-controller/issues/1295
 	runnerStartupTimeout := 30 * time.Minute
 
 	if ok && rt.GetExpiresAt().After(time.Now().Add(runnerStartupTimeout)) {

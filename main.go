@@ -23,11 +23,11 @@ import (
 	"strings"
 	"time"
 
-	actionsv1alpha1 "github.com/actions-runner-controller/actions-runner-controller/api/v1alpha1"
-	"github.com/actions-runner-controller/actions-runner-controller/build"
-	"github.com/actions-runner-controller/actions-runner-controller/controllers"
-	"github.com/actions-runner-controller/actions-runner-controller/github"
-	"github.com/actions-runner-controller/actions-runner-controller/logging"
+	actionsv1alpha1 "github.com/haiau/actions-runner-controller/api/v1alpha1"
+	"github.com/haiau/actions-runner-controller/build"
+	"github.com/haiau/actions-runner-controller/controllers"
+	"github.com/haiau/actions-runner-controller/github"
+	"github.com/haiau/actions-runner-controller/logging"
 	"github.com/kelseyhightower/envconfig"
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
@@ -116,7 +116,7 @@ func main() {
 	flag.DurationVar(&defaultScaleDownDelay, "default-scale-down-delay", controllers.DefaultScaleDownDelay, "The approximate delay for a scale down followed by a scale up, used to prevent flapping (down->up->down->... loop)")
 	flag.IntVar(&port, "port", 9443, "The port to which the admission webhook endpoint should bind")
 	flag.DurationVar(&syncPeriod, "sync-period", 1*time.Minute, "Determines the minimum frequency at which K8s resources managed by this controller are reconciled.")
-	flag.Var(&commonRunnerLabels, "common-runner-labels", "Runner labels in the K1=V1,K2=V2,... format that are inherited all the runners created by the controller. See https://github.com/actions-runner-controller/actions-runner-controller/issues/321 for more information")
+	flag.Var(&commonRunnerLabels, "common-runner-labels", "Runner labels in the K1=V1,K2=V2,... format that are inherited all the runners created by the controller. See https://github.com/haiau/actions-runner-controller/issues/321 for more information")
 	flag.StringVar(&namespace, "watch-namespace", "", "The namespace to watch for custom resources. Set to empty for letting it watch for all namespaces.")
 	flag.StringVar(&logLevel, "log-level", logging.LogLevelDebug, `The verbosity of the logging. Valid values are "debug", "info", "warn", "error". Defaults to "debug".`)
 	flag.Parse()

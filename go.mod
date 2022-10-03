@@ -1,4 +1,4 @@
-module github.com/actions-runner-controller/actions-runner-controller
+module github.com/haiau/actions-runner-controller
 
 go 1.19
 

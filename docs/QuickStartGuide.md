@@ -54,7 +54,7 @@ helm repo add actions-runner-controller https://actions-runner-controller.github
 helm upgrade --install --namespace actions-runner-system --create-namespace\
   --set=authSecret.create=true\
   --set=authSecret.github_token="REPLACE_YOUR_TOKEN_HERE"\
-  --wait actions-runner-controller actions-runner-controller/actions-runner-controller
+  --wait actions-runner-controller haiau/actions-runner-controller
 ```
 <sub> *note:- Replace REPLACE_YOUR_TOKEN_HERE with your PAT that was generated in Step 1 </sub>
 </details>
@@ -64,7 +64,7 @@ helm upgrade --install --namespace actions-runner-system --create-namespace\
 ##### Deploy ARC
 ```shell
 kubectl apply -f \
-https://github.com/actions-runner-controller/actions-runner-controller/\
+https://github.com/haiau/actions-runner-controller/\
 releases/download/v0.22.0/actions-runner-controller.yaml
 ```
 <sub> *note:- Replace "v0.22.0" with the version you wish to deploy </sub>

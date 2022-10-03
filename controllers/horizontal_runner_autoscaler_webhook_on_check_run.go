@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/actions-runner-controller/actions-runner-controller/api/v1alpha1"
-	"github.com/actions-runner-controller/actions-runner-controller/pkg/actionsglob"
 	"github.com/google/go-github/v47/github"
+	"github.com/haiau/actions-runner-controller/api/v1alpha1"
+	"github.com/haiau/actions-runner-controller/pkg/actionsglob"
 )
 
 func (autoscaler *HorizontalRunnerAutoscalerGitHubWebhook) MatchCheckRunEvent(event *github.CheckRunEvent) func(scaleUpTrigger v1alpha1.ScaleUpTrigger) bool {

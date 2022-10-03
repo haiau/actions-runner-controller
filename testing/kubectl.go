@@ -8,7 +8,7 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/actions-runner-controller/actions-runner-controller/testing/runtime"
+	"github.com/haiau/actions-runner-controller/testing/runtime"
 )
 
 type Kubectl struct {

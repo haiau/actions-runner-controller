@@ -6,4 +6,4 @@ spec:
   replicas: 2
   template:
     spec:
-      repository: actions-runner-controller/actions-runner-controller
+      repository: haiau/actions-runner-controller

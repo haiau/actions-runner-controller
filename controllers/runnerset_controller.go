@@ -31,9 +31,9 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/actions-runner-controller/actions-runner-controller/api/v1alpha1"
-	"github.com/actions-runner-controller/actions-runner-controller/controllers/metrics"
 	"github.com/go-logr/logr"
+	"github.com/haiau/actions-runner-controller/api/v1alpha1"
+	"github.com/haiau/actions-runner-controller/controllers/metrics"
 )
 
 // RunnerSetReconciler reconciles a Runner object

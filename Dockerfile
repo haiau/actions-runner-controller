@@ -36,7 +36,7 @@ ENV GOCACHE /build/${TARGETPLATFORM}/root/.cache/go-build
 RUN --mount=target=. \
   --mount=type=cache,mode=0777,target=${GOCACHE} \
   export GOOS=${TARGETOS} GOARCH=${TARGETARCH} GOARM=${TARGETVARIANT#v} && \
-  go build -trimpath -ldflags="-s -w -X 'github.com/actions-runner-controller/actions-runner-controller/build.Version=${VERSION}'" -o /out/manager main.go && \
+  go build -trimpath -ldflags="-s -w -X 'github.com/haiau/actions-runner-controller/build.Version=${VERSION}'" -o /out/manager main.go && \
   go build -trimpath -ldflags="-s -w" -o /out/github-webhook-server ./cmd/githubwebhookserver
 
 # Use distroless as minimal base image to package the manager binary

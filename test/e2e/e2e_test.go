@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/actions-runner-controller/actions-runner-controller/testing"
 	"github.com/google/go-github/v47/github"
+	"github.com/haiau/actions-runner-controller/testing"
 	"github.com/onsi/gomega"
 	"golang.org/x/oauth2"
 	"sigs.k8s.io/yaml"
@@ -102,7 +102,7 @@ func TestE2E(t *testing.T) {
 			label:         "stable",
 			controller:    "summerwind/actions-runner-controller",
 			controllerVer: "v0.25.2",
-			chart:         "actions-runner-controller/actions-runner-controller",
+			chart:         "haiau/actions-runner-controller",
 			// 0.20.2 accidentally added support for runner-status-update which isn't supported by ARC 0.25.2.
 			// With some chart values, the controller end up with crashlooping with `flag provided but not defined: -runner-status-update-hook`.
 			chartVer: "0.20.1",

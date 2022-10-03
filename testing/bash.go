@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/actions-runner-controller/actions-runner-controller/testing/runtime"
+	"github.com/haiau/actions-runner-controller/testing/runtime"
 )
 
 type ScriptConfig struct {
