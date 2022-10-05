@@ -1,4 +1,4 @@
-DOCKER_USER ?= summerwind
+DOCKER_USER ?= trothu
 DOCKER ?= docker
 NAME ?= ${DOCKER_USER}/actions-runner
 DIND_RUNNER_NAME ?= ${DOCKER_USER}/actions-runner-dind

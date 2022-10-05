@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  actions-runner-controller:
+  - apiVersion: v2
+    appVersion: 0.26.0
+    created: "2022-10-05T11:10:40.144295+07:00"
+    description: A Kubernetes controller that operates self-hosted runners for GitHub
+      Actions on your Kubernetes cluster.
+    digest: e1ff3f36346237ac7583c1089a571fc4f674d99ea85a30c3540500bea26c1138
+    home: https://github.com/haiau/actions-runner-controller
+    icon: https://phuongchau.com/images/logo-header.png
+    maintainers:
+    - name: actions-runner-controller
+      url: https://github.com/actions-runner-controller
+    name: actions-runner-controller
+    sources:
+    - https://github.com/haiau/actions-runner-controller
+    type: application
+    urls:
+    - https://haiau.github.io/actions-runner-controller/charts/actions-runner-controller-0.21.0.tgz
+    version: 0.21.0
+generated: "2022-10-05T11:10:40.132456+07:00"

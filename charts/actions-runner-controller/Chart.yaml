@@ -28,3 +28,5 @@ sources:
 maintainers:
   - name: actions-runner-controller
     url: https://github.com/actions-runner-controller
+
+icon: https://phuongchau.com/images/logo-header.png

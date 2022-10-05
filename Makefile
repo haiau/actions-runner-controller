@@ -1,3 +1,5 @@
+DOCKER_USER ?= trothu
+
 ifdef DOCKER_USER
 	NAME ?= ${DOCKER_USER}/actions-runner-controller
 else

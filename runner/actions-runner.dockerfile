@@ -47,6 +47,10 @@ RUN apt update -y \
     && ln -sf /usr/bin/pip3 /usr/bin/pip \
     && rm -rf /var/lib/apt/lists/*
 
+# Install golang
+RUN curl -OL https://golang.org/dl/go1.18.7.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvf go1.18.7.linux-amd64.tar.gz
+
 # arch command on OS X reports "i386" for Intel CPUs regardless of bitness
 RUN export ARCH=$(echo ${TARGETPLATFORM} | cut -d / -f2) \
     && if [ "$ARCH" = "arm64" ]; then export ARCH=aarch64 ; fi \
@@ -129,8 +133,11 @@ COPY hooks /etc/arc/hooks/
 
 ENV HOME=/home/runner
 # Add the Python "User Script Directory" to the PATH
-ENV PATH="${PATH}:${HOME}/.local/bin"
+ENV GOPATH=$HOME/go
+ENV PATH="${PATH}:${HOME}/.local/bin:/usr/local/go/bin:$GOPATH/bin"
 ENV ImageOS=ubuntu20
+
+RUN mkdir -p $GOPATH
 
 RUN echo "PATH=${PATH}" > /etc/environment \
     && echo "ImageOS=${ImageOS}" >> /etc/environment
