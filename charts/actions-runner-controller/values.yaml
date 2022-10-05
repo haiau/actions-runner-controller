@@ -49,7 +49,7 @@ authSecret:
 
 dockerRegistryMirror: ""
 image:
-  repository: "haiau/actions-runner-controller"
+  repository: "trothu/actions-runner-controller"
   actionsRunnerRepositoryAndTag: "trothu/action-runner:1.0.0"
   dindSidecarRepositoryAndTag: "docker:dind"
   pullPolicy: IfNotPresent
